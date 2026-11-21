@@ -14,10 +14,13 @@ You left the key out overnight.
 """
 
 
+def write_entry(text: str, out_dir: Path) -> None:
+    out_dir.mkdir(exist_ok=True)
+    (out_dir / "entry.txt").write_text(text, encoding="utf-8", newline="\n")
+
+
 def main() -> None:
-    output_dir = Path("/output")
-    output_dir.mkdir(exist_ok=True)
-    (output_dir / "entry.txt").write_text(POEM, encoding="utf-8", newline="\n")
+    write_entry(POEM, Path("/output"))
 
 
 if __name__ == "__main__":
